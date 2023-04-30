@@ -16,3 +16,13 @@ let notDefined = undefined;
 //   ^?
 const notDefined2 = undefined;
 //        ^?
+
+// Reference types
+// Array type
+const array: string[] = [];
+const array2: Array<string> = [];
+const array3: (string | number)[] = [1, 2, 3, 4, 5, 'str'];
+array3.push('str', 'str');
+
+// Tuples type
+const user: [string, number, boolean] = ['Rafin', 10, true];

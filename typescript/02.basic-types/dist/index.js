@@ -15,3 +15,11 @@ let notDefined = undefined;
 //   ^?
 const notDefined2 = undefined;
 //        ^?
+// Reference types
+// Array type
+const array = [];
+const array2 = [];
+const array3 = [1, 2, 3, 4, 5, 'str'];
+array3.push('str', 'str');
+// Tuples type
+const user = ['Rafin', 10, true];
