@@ -69,6 +69,18 @@ const unchangingString = 'Hello, world!';
 let rakib: 'Rakib' = 'Rakib';
 //    ^?
 
+const student2: {
+  readonly name: 'Sabbir Ahmed';
+  roll: number;
+  class: number;
+} = {
+  name: 'Sabbir Ahmed',
+  roll: 1,
+  class: 5,
+};
+
+// student2.name = 'Rakib Ahmed'; // readonly
+
 // Any Vs Unknown
 function anyFn(param: any) {
   return param.toString(); // we can to this without knowing the type of the param
@@ -82,3 +94,45 @@ function unknownFn(param: unknown) {
     //        ^?
   }
 }
+
+// Function
+type AddTwoNumbers = (a: number, b: number) => number;
+
+interface IAddTwoNumbers {
+  (a: number, b: number): number;
+}
+
+const AddTwoNumbers: AddTwoNumbers = function (a, b) {
+  return a + b;
+};
+
+const nums: number[] = [2, 4, 6, 8];
+
+const squaredNums = nums.map((num) => num * num);
+console.log(squaredNums);
+
+// Function inside Object - Method
+type Person = {
+  name: string;
+  bankBalance: number;
+  getBalance: () => number;
+  addBalance: (balance: number) => string;
+};
+
+const person: Person = {
+  name: 'John',
+  bankBalance: 1000,
+  getBalance: function () {
+    return this.bankBalance;
+  },
+  addBalance: function (balance: number) {
+    return `Previous Balance: ${
+      this.bankBalance
+    }. Added: ${balance}. Current Balance: ${(this.bankBalance += balance)}`;
+  },
+};
+
+console.log(person.getBalance());
+console.log(person.addBalance(50));
+console.log(person.getBalance());
+console.log(person.addBalance(50));
