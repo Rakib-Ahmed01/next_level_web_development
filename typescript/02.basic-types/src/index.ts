@@ -136,3 +136,25 @@ console.log(person.getBalance());
 console.log(person.addBalance(50));
 console.log(person.getBalance());
 console.log(person.addBalance(50));
+
+// Optional parameters, properties & Default parameters
+const add = (a: number, b: number, c: number = 0) => {
+  return a + b + c;
+};
+
+type User = {
+  name: string;
+  email?: string;
+};
+
+// Spread operator
+const nums1 = [1, 2, 3, 4, 5];
+const num2 = [6, 7, 8, 9, 10];
+nums1.push(...num2);
+
+// Rest operator
+const saySalamToPeople = (...people: string[]) => {
+  people.forEach((person) => console.log(`Assalamualaikum, ${person}...`));
+};
+
+saySalamToPeople('Rakib', 'Sabbir', 'Rafin');
