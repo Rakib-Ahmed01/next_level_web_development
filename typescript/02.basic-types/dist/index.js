@@ -93,4 +93,15 @@ nums1.push(...num2);
 const saySalamToPeople = (...people) => {
     people.forEach((person) => console.log(`Assalamualaikum, ${person}...`));
 };
-saySalamToPeople('Rakib', 'Sabbir', 'Rafin');
+saySalamToPeople('Rakib Vau', 'Sabbir Vai', 'Rafin Vai');
+const person1 = {
+    name: 'John',
+    age: 34,
+    experience: 5,
+};
+// Enum Type - Not Recommended
+var RoleEnum;
+(function (RoleEnum) {
+    RoleEnum["user"] = "user";
+    RoleEnum["admin"] = "admin";
+})(RoleEnum || (RoleEnum = {}));

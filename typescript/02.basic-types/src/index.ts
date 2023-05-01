@@ -112,14 +112,14 @@ const squaredNums = nums.map((num) => num * num);
 console.log(squaredNums);
 
 // Function inside Object - Method
-type Person = {
+type Person2 = {
   name: string;
   bankBalance: number;
   getBalance: () => number;
   addBalance: (balance: number) => string;
 };
 
-const person: Person = {
+const person: Person2 = {
   name: 'John',
   bankBalance: 1000,
   getBalance: function () {
@@ -142,7 +142,7 @@ const add = (a: number, b: number, c: number = 0) => {
   return a + b + c;
 };
 
-type User = {
+type User2 = {
   name: string;
   email?: string;
 };
@@ -157,4 +157,37 @@ const saySalamToPeople = (...people: string[]) => {
   people.forEach((person) => console.log(`Assalamualaikum, ${person}...`));
 };
 
-saySalamToPeople('Rakib', 'Sabbir', 'Rafin');
+saySalamToPeople('Rakib Vau', 'Sabbir Vai', 'Rafin Vai');
+
+// Union Type
+type Role = 'user' | 'admin' | 'super-admin';
+
+type User = {
+  name: string;
+  role: Role;
+};
+
+// Intersection Type
+type Person = {
+  name: string;
+  age: number;
+};
+
+type Employee = {
+  name: string;
+  age: number;
+  department: string;
+  experience: number;
+};
+
+const person1: Person | Employee = {
+  name: 'John',
+  age: 34,
+  experience: 5,
+};
+
+// Enum Type - Not Recommended
+enum RoleEnum {
+  user = 'user',
+  admin = 'admin',
+}
