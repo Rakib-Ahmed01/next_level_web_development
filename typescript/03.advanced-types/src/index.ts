@@ -20,3 +20,12 @@ function kgToGram(unit: string | number) {
 }
 
 const resultToBeNumber = kgToGram(111) as number;
+
+// Interface
+interface INumberArray {
+  [index: number]: number;
+}
+
+type TNumberArray = Array<number>;
+
+const arr: TNumberArray = [1, 2, 3, 4, 5];
