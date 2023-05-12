@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
+import asyncHandler from 'express-async-handler';
 import { createUserToDb, getAllUsers } from './user.services';
 
-export const createUser = async (req: Request, res: Response) => {
+export const createUser = asyncHandler(async (req: Request, res: Response) => {
   const user = req.body;
   const result = await createUserToDb(user);
 
@@ -9,13 +10,13 @@ export const createUser = async (req: Request, res: Response) => {
     status: 'success',
     data: result,
   });
-};
+});
 
-export const getUsers = async (req: Request, res: Response) => {
+export const getUsers = asyncHandler(async (req: Request, res: Response) => {
   const users = await getAllUsers();
 
   res.status(200).json({
     status: 'success',
     data: users,
   });
-};
+});

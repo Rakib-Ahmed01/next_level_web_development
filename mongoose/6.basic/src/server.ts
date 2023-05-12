@@ -1,19 +1,22 @@
-import mongoose from 'mongoose';
-import { app } from './app';
+import cors from 'cors';
+import express, { Application } from 'express';
+import {
+  globalErrorHandler,
+  notFoundHandler,
+} from './app/middlewares/error.middleware';
+import userRouter from './app/modules/user/user.route';
+import { connectDb } from './app/utils/db';
+export const app: Application = express();
 
-const port = 5000;
+// use middlewares
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-async function connect() {
-  try {
-    await mongoose.connect('mongodb://127.0.0.1:27017/mongoose-practice');
-    console.log(`Database connected!`);
+connectDb();
 
-    app.listen(port, () => {
-      console.log(`server is listening on port ${port}`);
-    });
-  } catch (error) {
-    console.log(`Database connection error: ${error}`);
-  }
-}
+app.use('/api/v1/user', userRouter);
 
-connect();
+// error middleware
+app.use(notFoundHandler);
+app.use(globalErrorHandler);
