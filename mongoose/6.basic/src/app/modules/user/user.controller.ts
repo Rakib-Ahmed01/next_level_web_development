@@ -1,8 +1,21 @@
 import { Request, Response } from 'express';
-import { createUserToDb } from './user.services';
+import { createUserToDb, getAllUsers } from './user.services';
 
 export const createUser = async (req: Request, res: Response) => {
-  const user = await createUserToDb();
+  const user = req.body;
+  const result = await createUserToDb(user);
 
-  res.json(user);
+  res.status(200).json({
+    status: 'success',
+    data: result,
+  });
+};
+
+export const getUsers = async (req: Request, res: Response) => {
+  const users = await getAllUsers();
+
+  res.status(200).json({
+    status: 'success',
+    data: users,
+  });
 };

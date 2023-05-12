@@ -1,7 +1,6 @@
 import cors from 'cors';
 import express, { Application } from 'express';
 import userRouter from './app/modules/user/user.route';
-
 export const app: Application = express();
 
 // use middlewares
