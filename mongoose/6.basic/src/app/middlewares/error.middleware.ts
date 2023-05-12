@@ -9,7 +9,7 @@ export function notFoundHandler(
   res: Response,
   next: NextFunction
 ) {
-  const error: CustomError = new Error('404 Page Not Found');
+  const error: CustomError = new Error('404 Resource Not Found!');
   error.status = 404;
   next(error);
 }
