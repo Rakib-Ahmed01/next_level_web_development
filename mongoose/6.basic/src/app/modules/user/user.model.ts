@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
-import { IUser } from './user.interface';
+import { IUser, IUserMethods, UserModel } from './user.interface';
 
-const userSchema = new Schema<IUser>({
+const userSchema = new Schema<IUser, UserModel, IUserMethods>({
   id: {
     type: Number,
     required: true,
@@ -19,6 +19,14 @@ const userSchema = new Schema<IUser>({
   },
 });
 
-const User = model<IUser>('User', userSchema);
+userSchema.methods.fullName = function () {
+  return `${this.name.firstName} ${this.name.lastName}`;
+};
+
+userSchema.static('findByName', function findBName(name) {
+  return this.findOne({ name });
+});
+
+const User = model<IUser, UserModel>('User', userSchema);
 
 export default User;
