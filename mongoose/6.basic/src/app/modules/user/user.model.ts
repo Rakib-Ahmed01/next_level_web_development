@@ -19,13 +19,17 @@ const userSchema = new Schema<IUser, UserModel, IUserMethods>({
   },
 });
 
-userSchema.methods.fullName = function () {
+userSchema.methods.fullName = function (this: IUser) {
   return `${this.name.firstName} ${this.name.lastName}`;
 };
 
 userSchema.static('findByName', function findBName(name) {
   return this.findOne({ name });
 });
+
+// userSchema.virtual('fullName').get(function (this: IUser) {
+//   return `${this.name.firstName} ${this.name.lastName}`;
+// });
 
 const User = model<IUser, UserModel>('User', userSchema);
 
