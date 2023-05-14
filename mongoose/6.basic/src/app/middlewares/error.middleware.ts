@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import mongoose from 'mongoose';
 
 interface CustomError extends Error {
   status?: number;
@@ -20,6 +21,22 @@ export function globalErrorHandler(
   res: Response,
   next: NextFunction
 ) {
+  if (err instanceof mongoose.Error.ValidationError) {
+    const errors = Object.values(err.errors).map((err) => err.message);
+
+    return res.status(400).json({
+      message: 'Validation error',
+      errors,
+    });
+  }
+
+  if (err instanceof mongoose.Error.CastError) {
+    return res.status(400).json({
+      message: err.message,
+      error: err,
+    });
+  }
+
   const statusCode = err.status ? err.status : 500;
 
   return res.status(statusCode).json({
